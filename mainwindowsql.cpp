@@ -20,7 +20,7 @@ MainWindowsql::MainWindowsql(QWidget *parent) :
 
     qDebug() << "Iniciado";
     QString nombre;
-    nombre.append("base_datos.sqlite");
+    nombre.append("base_datos_test.sqlite");
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(nombre);
     if(db.open()){
@@ -42,12 +42,14 @@ MainWindowsql::~MainWindowsql()
 void MainWindowsql::crearTablaUsuarios()
 {
     QString consulta;
-    consulta.append("CREATE TABLE IF NOT EXISTS usuarios("
+    consulta.append("CREATE TABLE IF NOT EXISTS equipo("
                     "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    "numero INTEGER NOT NULL,"
                     "nombre VARCHAR(50),"
                     "apellido VARCHAR (50),"
-                    "edad INTEGER NOT NULL,"
-                    "clase INTEGER NOT NULL"
+                    "latitud INTEGER NOT NULL,"
+                    "longitud INTEGER NOT NULL,"
+                    "velocidad INTEGER NOT NULL"
                     ");");
     QSqlQuery crear;
     crear.prepare(consulta);
@@ -62,16 +64,20 @@ void MainWindowsql::crearTablaUsuarios()
 void MainWindowsql::insertarUsuario()
 {
     QString consulta;
-    consulta.append("INSERT INTO usuarios("
+    consulta.append("INSERT INTO equipo("
+                    "numero,"
                     "nombre,"
                     "apellido,"
-                    "edad,"
-                    "clase)"
+                    "latitud,"
+                    "longitud,"
+                    "velocidad)"
                     "VALUES("
+                    ""+ui->lineEditnumero->text()+","
                     "'"+ui->lineEditnombre->text()+"',"
                     "'"+ui->lineEditapellido->text()+"',"
-                    ""+ui->lineEditedad->text()+","
-                    ""+ui->lineEditclase->text()+""
+                    ""+ui->lineEditlatitud->text()+","
+                    ""+ui->lineEditlongitud->text()+","
+                    ""+ui->lineEditvelocidad->text()+""
                     ");");
     QSqlQuery insertar;
     insertar.prepare(consulta);
@@ -86,7 +92,7 @@ void MainWindowsql::insertarUsuario()
 void MainWindowsql::mostrarDatos()
 {
     QString consulta;
-    consulta.append("SELECT * FROM usuarios");
+    consulta.append("SELECT * FROM equipo");
     QSqlQuery mostrar;
     mostrar.prepare(consulta);
     if(mostrar.exec()){
@@ -104,6 +110,8 @@ void MainWindowsql::mostrarDatos()
         ui->tableWidgetdato->setItem(fila,1,new QTableWidgetItem(mostrar.value(2).toByteArray().constData()));
         ui->tableWidgetdato->setItem(fila,2,new QTableWidgetItem(mostrar.value(3).toByteArray().constData()));
         ui->tableWidgetdato->setItem(fila,3,new QTableWidgetItem(mostrar.value(4).toByteArray().constData()));
+        ui->tableWidgetdato->setItem(fila,4,new QTableWidgetItem(mostrar.value(5).toByteArray().constData()));
+        ui->tableWidgetdato->setItem(fila,5,new QTableWidgetItem(mostrar.value(6).toByteArray().constData()));
         fila++;
     }
 }

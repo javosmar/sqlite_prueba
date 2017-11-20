@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>615</width>
+    <width>875</width>
     <height>460</height>
    </rect>
   </property>
@@ -19,10 +19,15 @@
      <rect>
       <x>180</x>
       <y>0</y>
-      <width>421</width>
+      <width>611</width>
       <height>341</height>
      </rect>
     </property>
+    <column>
+     <property name="text">
+      <string>Número</string>
+     </property>
+    </column>
     <column>
      <property name="text">
       <string>Nombre</string>
@@ -35,12 +40,17 @@
     </column>
     <column>
      <property name="text">
-      <string>Edad</string>
+      <string>Latitud</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>Clase</string>
+      <string>Longitud</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Velocidad</string>
      </property>
     </column>
    </widget>
@@ -49,11 +59,14 @@
      <rect>
       <x>10</x>
       <y>370</y>
-      <width>565</width>
+      <width>751</width>
       <height>25</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="lineEditnumero"/>
+     </item>
      <item>
       <widget class="QLineEdit" name="lineEditnombre"/>
      </item>
@@ -61,10 +74,13 @@
       <widget class="QLineEdit" name="lineEditapellido"/>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEditedad"/>
+      <widget class="QLineEdit" name="lineEditlatitud"/>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEditclase"/>
+      <widget class="QLineEdit" name="lineEditlongitud"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditvelocidad"/>
      </item>
      <item>
       <widget class="QPushButton" name="pushButtoninsertar">
@@ -104,7 +120,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>615</width>
+     <width>875</width>
      <height>20</height>
     </rect>
    </property>
