@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>615</width>
-    <height>460</height>
+    <width>875</width>
+    <height>563</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,12 +17,17 @@
    <widget class="QTableWidget" name="tableWidgetdato">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>421</width>
+      <x>180</x>
+      <y>0</y>
+      <width>611</width>
       <height>341</height>
      </rect>
     </property>
+    <column>
+     <property name="text">
+      <string>Número</string>
+     </property>
+    </column>
     <column>
      <property name="text">
       <string>Nombre</string>
@@ -35,25 +40,33 @@
     </column>
     <column>
      <property name="text">
-      <string>Edad</string>
+      <string>Latitud</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>Clase</string>
+      <string>Longitud</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Velocidad</string>
      </property>
     </column>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>370</y>
-      <width>565</width>
-      <height>24</height>
+      <width>751</width>
+      <height>25</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="lineEditnumero"/>
+     </item>
      <item>
       <widget class="QLineEdit" name="lineEditnombre"/>
      </item>
@@ -61,10 +74,13 @@
       <widget class="QLineEdit" name="lineEditapellido"/>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEditedad"/>
+      <widget class="QLineEdit" name="lineEditlatitud"/>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEditclase"/>
+      <widget class="QLineEdit" name="lineEditlongitud"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditvelocidad"/>
      </item>
      <item>
       <widget class="QPushButton" name="pushButtoninsertar">
@@ -75,13 +91,140 @@
      </item>
     </layout>
    </widget>
+   <widget class="QComboBox" name="comboBoxserie">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>79</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonserie">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>80</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CONECTAR</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonpedir">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PEDIR DATOS</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelnumero">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>410</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelnombre">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>410</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelapellido">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>410</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labellatitud">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>410</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labellongitud">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>410</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelvelocidad">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>410</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBoxrepetir">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>130</y>
+      <width>72</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Repetir</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>615</width>
+     <width>875</width>
      <height>20</height>
     </rect>
    </property>
