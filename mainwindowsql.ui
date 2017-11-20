@@ -6,66 +6,74 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>590</width>
-    <height>462</height>
+    <width>615</width>
+    <height>460</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindowsql</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButtoninsertar">
+   <widget class="QTableWidget" name="tableWidgetdato">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>60</y>
-      <width>131</width>
-      <height>21</height>
+      <x>10</x>
+      <y>10</y>
+      <width>421</width>
+      <height>341</height>
      </rect>
     </property>
-    <property name="text">
-     <string>INSERTAR USUARIO</string>
-    </property>
+    <column>
+     <property name="text">
+      <string>Nombre</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Apellido</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Edad</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Clase</string>
+     </property>
+    </column>
    </widget>
-   <widget class="QLineEdit" name="lineEditnombre">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>113</width>
-      <height>21</height>
+      <x>10</x>
+      <y>370</y>
+      <width>565</width>
+      <height>24</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEditapellido">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>20</y>
-      <width>113</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEditedad">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>20</y>
-      <width>113</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEditclase">
-    <property name="geometry">
-     <rect>
-      <x>390</x>
-      <y>20</y>
-      <width>113</width>
-      <height>21</height>
-     </rect>
-    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="lineEditnombre"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditapellido"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditedad"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditclase"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtoninsertar">
+       <property name="text">
+        <string>INSERTAR USUARIO</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -73,7 +81,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>590</width>
+     <width>615</width>
      <height>20</height>
     </rect>
    </property>

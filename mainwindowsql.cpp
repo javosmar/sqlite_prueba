@@ -24,6 +24,7 @@ MainWindowsql::MainWindowsql(QWidget *parent) :
     }
 
     crearTablaUsuarios();
+    mostrarDatos();
 }
 
 MainWindowsql::~MainWindowsql()
@@ -75,7 +76,33 @@ void MainWindowsql::insertarUsuario()
     }
 }
 
+void MainWindowsql::mostrarDatos()
+{
+    QString consulta;
+    consulta.append("SELECT * FROM usuarios");
+    QSqlQuery mostrar;
+    mostrar.prepare(consulta);
+    if(mostrar.exec()){
+        qDebug() << "consulta realizada con exito";
+    }
+    else{
+        qDebug() << "ERROR! " << mostrar.lastError();
+    }
+
+    int fila = 0;
+    ui->tableWidgetdato->setRowCount(0);
+    while(mostrar.next()){
+        ui->tableWidgetdato->insertRow(fila);
+        ui->tableWidgetdato->setItem(fila,0,new QTableWidgetItem(mostrar.value(1).toByteArray().constData()));
+        ui->tableWidgetdato->setItem(fila,1,new QTableWidgetItem(mostrar.value(2).toByteArray().constData()));
+        ui->tableWidgetdato->setItem(fila,2,new QTableWidgetItem(mostrar.value(3).toByteArray().constData()));
+        ui->tableWidgetdato->setItem(fila,3,new QTableWidgetItem(mostrar.value(4).toByteArray().constData()));
+        fila++;
+    }
+}
+
 void MainWindowsql::on_pushButtoninsertar_clicked()
 {
     insertarUsuario();
+    mostrarDatos();
 }

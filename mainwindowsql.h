@@ -20,6 +20,7 @@ public:
 
     void crearTablaUsuarios();
     void insertarUsuario();
+    void mostrarDatos();
 
 private slots:
     void on_pushButtoninsertar_clicked();
