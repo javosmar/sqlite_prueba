@@ -177,12 +177,6 @@ void MainWindowsql::Serial_Pedir()
             }
         }
     }
-    ui->labelnumero->setText(jugador[0]);
-    ui->labelnombre->setText(jugador[1]);
-    ui->labelapellido->setText(jugador[2]);
-    ui->labellatitud->setText(jugador[3]);
-    ui->labellongitud->setText(jugador[4]);
-    ui->labelvelocidad->setText(jugador[5]);
 }
 
 void MainWindowsql::on_pushButtonserie_clicked()
