@@ -19,6 +19,10 @@ public:
     ~MainWindowsql();
 
     void crearTablaUsuarios();
+    void insertarUsuario();
+
+private slots:
+    void on_pushButtoninsertar_clicked();
 
 private:
     Ui::MainWindowsql *ui;

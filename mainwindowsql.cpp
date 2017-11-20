@@ -50,3 +50,32 @@ void MainWindowsql::crearTablaUsuarios()
         qDebug() << "ERROR! " << crear.lastError();
     }
 }
+
+void MainWindowsql::insertarUsuario()
+{
+    QString consulta;
+    consulta.append("INSERT INTO usuarios("
+                    "nombre,"
+                    "apellido,"
+                    "edad,"
+                    "clase)"
+                    "VALUES("
+                    "'"+ui->lineEditnombre->text()+"',"
+                    "'"+ui->lineEditapellido->text()+"',"
+                    ""+ui->lineEditedad->text()+","
+                    ""+ui->lineEditclase->text()+""
+                    ");");
+    QSqlQuery insertar;
+    insertar.prepare(consulta);
+    if(insertar.exec()){
+        qDebug() << "usuario agregado correctamente";
+    }
+    else{
+        qDebug() << "ERROR! " << insertar.lastError();
+    }
+}
+
+void MainWindowsql::on_pushButtoninsertar_clicked()
+{
+    insertarUsuario();
+}
