@@ -1,7 +1,7 @@
 #include "mainwindowsql.h"
 #include "ui_mainwindowsql.h"
 
-//agregado
+//editado online
 
 MainWindowsql::MainWindowsql(QWidget *parent) :
     QMainWindow(parent),
