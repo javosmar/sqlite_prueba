@@ -2,20 +2,27 @@
 #include "ui_mainwindowsql.h"
 #include <QDebug>
 
+char leido[16] = {0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0};
+bool estado_serial;
+
 MainWindowsql::MainWindowsql(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindowsql)
 {
     ui->setupUi(this);
 
-    qDebug() << "Iniciado";
+    serial = new QSerialPort(this);
+    Serial_Conf();
+    connect(serial,SIGNAL(readyRead()),this,SLOT(Serial_Pedir()));
+    foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts()){
+            ui->comboBoxserie->insertItem(0,info.portName());
+    }
 
+    qDebug() << "Iniciado";
     QString nombre;
     nombre.append("base_datos.sqlite");
-
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(nombre);
-
     if(db.open()){
         qDebug() << "base de datos iniciada";
     }
@@ -105,4 +112,55 @@ void MainWindowsql::on_pushButtoninsertar_clicked()
 {
     insertarUsuario();
     mostrarDatos();
+}
+
+void MainWindowsql::Serial_Conf()
+{
+    serial->setPortName(ui->comboBoxserie->currentText());
+    serial->setBaudRate(QSerialPort::Baud9600);
+    serial->setDataBits(QSerialPort::Data8);
+    serial->setParity(QSerialPort::NoParity);
+    serial->setStopBits(QSerialPort::OneStop);
+    serial->setFlowControl(QSerialPort::NoFlowControl);
+}
+
+void MainWindowsql::Serial_Conect()
+{
+    if((serial->open(QIODevice::ReadWrite)))
+    {
+        estado_serial = true;
+    }
+    else
+        Serial_Error();
+}
+
+void MainWindowsql::Serial_Desconect()
+{
+    serial->close();
+    estado_serial = false;
+}
+
+void MainWindowsql::Serial_Error()
+{
+    QMessageBox error;
+    error.setText("Verifique la conexión de la placa.");
+    error.setIcon(QMessageBox::Warning);
+    error.exec();
+}
+
+void MainWindowsql::Serial_Pedir()
+{
+    qint64 quantity = serial->readLine(leido,sizeof(leido));
+}
+void MainWindowsql::on_pushButtonserie_clicked()
+{
+    Serial_Conf();
+    if(estado_serial == false)
+    {
+        Serial_Conect();
+        serial->clear();
+    }
+    else{
+        Serial_Desconect();
+    }
 }
