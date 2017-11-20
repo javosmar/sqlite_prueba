@@ -2,6 +2,7 @@
 #define MAINWINDOWSQL_H
 
 #include <QMainWindow>
+#include <QtSql/QSqlDatabase>
 
 namespace Ui {
 class MainWindowsql;
@@ -17,6 +18,7 @@ public:
 
 private:
     Ui::MainWindowsql *ui;
+    QSqlDatabase db;
 };
 
 #endif // MAINWINDOWSQL_H
