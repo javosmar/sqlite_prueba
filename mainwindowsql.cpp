@@ -22,9 +22,31 @@ MainWindowsql::MainWindowsql(QWidget *parent) :
     else{
         qDebug() << "error al abrir base de datos";
     }
+
+    crearTablaUsuarios();
 }
 
 MainWindowsql::~MainWindowsql()
 {
     delete ui;
+}
+
+void MainWindowsql::crearTablaUsuarios()
+{
+    QString consulta;
+    consulta.append("CREATE TABLE IF NOT EXISTS usuarios("
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    "nombre VARCHAR(50),"
+                    "apellido VARCHAR (50),"
+                    "edad INTEGER NOT NULL,"
+                    "clase INTEGER NOT NULL"
+                    ");");
+    QSqlQuery crear;
+    crear.prepare(consulta);
+    if(crear.exec()){
+        qDebug() << "tabla creada correctamente";
+    }
+    else{
+        qDebug() << "ERROR! " << crear.lastError();
+    }
 }
