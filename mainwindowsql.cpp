@@ -3,7 +3,9 @@
 #include <QDebug>
 
 char leido[16] = {0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0};
-bool estado_serial;
+QString jugador[6];
+bool estado_serial, pedir_serial;
+int i = 0;
 
 MainWindowsql::MainWindowsql(QWidget *parent) :
     QMainWindow(parent),
@@ -72,12 +74,12 @@ void MainWindowsql::insertarUsuario()
                     "longitud,"
                     "velocidad)"
                     "VALUES("
-                    ""+ui->lineEditnumero->text()+","
-                    "'"+ui->lineEditnombre->text()+"',"
-                    "'"+ui->lineEditapellido->text()+"',"
-                    ""+ui->lineEditlatitud->text()+","
-                    ""+ui->lineEditlongitud->text()+","
-                    ""+ui->lineEditvelocidad->text()+""
+                    ""+jugador[0]+","
+                    "'"+jugador[1]+"',"
+                    "'"+jugador[2]+"',"
+                    ""+jugador[3]+","
+                    ""+jugador[4]+","
+                    ""+jugador[5]+""
                     ");");
     QSqlQuery insertar;
     insertar.prepare(consulta);
@@ -125,7 +127,7 @@ void MainWindowsql::on_pushButtoninsertar_clicked()
 void MainWindowsql::Serial_Conf()
 {
     serial->setPortName(ui->comboBoxserie->currentText());
-    serial->setBaudRate(QSerialPort::Baud9600);
+    serial->setBaudRate(QSerialPort::Baud115200);
     serial->setDataBits(QSerialPort::Data8);
     serial->setParity(QSerialPort::NoParity);
     serial->setStopBits(QSerialPort::OneStop);
@@ -158,8 +160,31 @@ void MainWindowsql::Serial_Error()
 
 void MainWindowsql::Serial_Pedir()
 {
-    qint64 quantity = serial->readLine(leido,sizeof(leido));
+    while(serial->bytesAvailable() != 0){
+        qint64 quantity = serial->readLine(leido,sizeof(leido));
+        if(quantity > 1){
+            jugador[i] = leido;
+            qDebug() <<"dato: " << jugador[i];
+            i++;
+        }
+        if(i > 5){
+            i = 0;
+            insertarUsuario();
+            mostrarDatos();
+            if(ui->checkBoxrepetir->isChecked()){
+                serial->write("P");
+                qDebug() << "-----";
+            }
+        }
+    }
+    ui->labelnumero->setText(jugador[0]);
+    ui->labelnombre->setText(jugador[1]);
+    ui->labelapellido->setText(jugador[2]);
+    ui->labellatitud->setText(jugador[3]);
+    ui->labellongitud->setText(jugador[4]);
+    ui->labelvelocidad->setText(jugador[5]);
 }
+
 void MainWindowsql::on_pushButtonserie_clicked()
 {
     Serial_Conf();
@@ -171,4 +196,10 @@ void MainWindowsql::on_pushButtonserie_clicked()
     else{
         Serial_Desconect();
     }
+}
+
+void MainWindowsql::on_pushButtonpedir_clicked()
+{
+    serial->write("P");
+    qDebug() << "--------";
 }

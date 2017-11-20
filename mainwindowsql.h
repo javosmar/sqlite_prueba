@@ -34,8 +34,8 @@ private slots:
     void Serial_Error();
     void Serial_Pedir();
     void on_pushButtoninsertar_clicked();
-
     void on_pushButtonserie_clicked();
+    void on_pushButtonpedir_clicked();
 
 private:
     Ui::MainWindowsql *ui;
